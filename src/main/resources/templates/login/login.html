@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- 改造，xmlns:th="http://www.thymeleaf.org" -->
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MP项目</title>
+    <!-- 改造，th:href="@{/webjars/layui/css/layui.css}" 1、改造为thymeleaf的th标签，2改造为webjars的管理方式 -->
+    <link rel="stylesheet" th:href="@{/webjars/layui/css/layui.css}">
+</head>
+<body>
+    <div class="layui-container">
+        <div class="layui-row">
+            <div class="layui-col-md12" style="height: 200px">
+            </div>
+            <div class="layui-col-md6 layui-col-md-offset5">
+                <h1>MP小项目</h1>
+            </div>
+            <div class="layui-col-md12" style="height: 30px">
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="layui-col-md6 layui-col-md-offset3">
+                <!-- 改造，增加th:action="@{/auth/login}" 1、post提交到/auth/login -->
+                <form class="layui-form"  method="post" th:action="@{/auth/login}">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户名</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="username" value="mp" required lay-verify="required"
+                                   placeholder="请输入用户名" autocomplete="off"
+                                   class="layui-input" maxlength="20">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密&nbsp;码</label>
+                        <div class="layui-input-block">
+                            <input type="password" name="password" value="123456" required
+                                   lay-verify="required" placeholder="请输入密码" autocomplete="off"
+                                   class="layui-input" maxlength="20">
+                        </div>
+                    </div>
+
+                    <!-- th:if="${not #strings.isEmpty(error)}"判断是否存在error，存在则显示该div -->
+                    <div class="layui-form-item" th:if="${not #strings.isEmpty(error)}">
+                        <!-- 显示登录失败的错误提示 -->
+                        <font color="red" th:text="${error}"></font>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">登录</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- 改造，th:src="@{/webjars/layui/layui.all.js}" 1、改造为thymeleaf的th标签，2改造为webjars的管理方式 -->
+    <script th:src="@{/webjars/layui/layui.all.js}"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://121.5.242.163:4316/project?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: 1g5~9fth0
+
+  thymeleaf:
+    cache: false     # 开发环境设置为true方便查看页面效果，不然得重启项目才能看到效果，生产环境设置为true
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto    # 主键策略为数据库自增
+  mapper-locations: classpath:mapper/mprbac/*Mapper.xml     # mapper接口对应的xml文件的位置
+  type-aliases-package: com.mp.mprbac.entity     # 实体类别名的包
+logging:
+  level:
+    com.mp.mprbac.mapper: trace     # 设置该包下的日志级（即sqlmapper的接口。目的是查看执行的sql语句）
